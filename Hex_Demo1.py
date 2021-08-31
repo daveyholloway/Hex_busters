@@ -31,25 +31,25 @@ NAVY    =   (0,0,128)
 
 
 
-TITLE = "Hexbusters" #Title for window frame
-window = pygame.display.set_mode((DISPLAY_HEIGHT,DISPLAY_HEIGHT)) #dimensions of game screen
-window.fill(WHITE)#background colour for game screen
-pygame.display.update() #updates / applies the window parameters to the screen
+TITLE = "Hexbusters"
+window = pygame.display.set_mode((DISPLAY_HEIGHT,DISPLAY_HEIGHT))
+window.fill(WHITE)
+pygame.display.update()
 pygame.display.set_caption(TITLE)
 
 
 
 
-##hexagon parameters
+
 Side_Length = 75
-x = 200 #x-coordinate of first hex
-y = 200 #y-coordinate of first hex
-Seg_Height = math.sqrt((Side_Length**2)- ((0.5*Side_Length)**2)) #Pythag for distance from centre to mid of hex side
-Colour = GRAY #Hes start colour
-text = " " #text parameter default is empty until changed
+x = 200
+y = 200
+Seg_Height = math.sqrt((Side_Length**2)- ((0.5*Side_Length)**2))
+Colour = GRAY
+text = " "
 
 
-###random letter selector snippet
+
 alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
 def letter():
@@ -57,31 +57,31 @@ def letter():
     return letter
 
 
-#####loads the start button image
-start_button_img = pygame.image.load('Start_Button.png').convert_alpha() #Loads Start button image file into Pygame
+#####load button image
+start_button_img = pygame.image.load('Start_Button.png').convert_alpha()
 
 
 
-######Create Start Button Instance
-start_button = Button(850,10,start_button_img,0.15) #see "buttons module" method that blits this instance
+######Create Button Instance
+start_button = Button(850,10,start_button_img,0.15)
 
 
+
+
+
+#hex2 = Hex()#need to change the position by passing through new (x,y) coordinates
 
 def draw(x,y,Side_Length, Seg_Height, Colour):
     window.fill(WHITE)
 
     #########################1st Column##################################
-    ###instances of the hexes that need drawing...using the hex module
-    hex1 = Hex(x, y+(Seg_Height*0), Side_Length,Colour, text = letter()) #Parameters for hex1 attributes
-    hex1.draw(window)#see draw method in "hex module" for instruction to upload this instance to the game screen
-    hex1.get_Hex_letter()#retrieves letter from hex object
-    hex1.get_Hex_letter_rectangle()#retrieves rectangle coordinates from letter render
+
+    hex1 = Hex(x , y+(Seg_Height*0), Side_Length,Colour, text = letter())
+    hex1.draw(window)
 
 
     hex2 = Hex(x,y+(Seg_Height*2),Side_Length,Colour, text = letter())
     hex2.draw(window)
-    hex2.get_Hex_letter()
-    hex2.get_Hex_letter_rectangle()
 
     hex3 = Hex(x,y+(Seg_Height*4),Side_Length,Colour, text = letter())
     hex3.draw(window)
@@ -200,8 +200,8 @@ def draw(x,y,Side_Length, Seg_Height, Colour):
     hex36 =  Hex(x+(Side_Length*6) , y-Seg_Height*2, Side_Length,Colour=WHITE, text = "" )
     hex36.draw(window)
 
-    hex37 =  Hex(x+(Side_Length*7.5) , y+Seg_Height, Side_Length,Colour=RED, text = "" )
-    hex37.draw(window)
+    hex37 =  Hex(x+(Side_Length*7.5) , y+Seg_Height, Side_Length,Colour=WHITE, text = "" )
+    hex31.draw(window)
 
 
     #################################################################
@@ -226,28 +226,21 @@ def draw(x,y,Side_Length, Seg_Height, Colour):
 
 
 
-    ############################Game Loop Starts######################################
+    ##################################################################
 run = False
 
 while not run:
 
 
-    for event in pygame.event.get():
-        pos = pygame.mouse.get_pos()#retrieves mouse x,y coordinates
-        print(pos)
 
+
+    for event in pygame.event.get():
         if event.type==pygame.QUIT:
             run = True
 
-        if start_button.draw(window) == True:
+        if start_button.draw(window) ==True:
             print ("START")
-
             draw(x,y,Side_Length,Seg_Height,Colour)
-
-
-
-
-
 
 
 
